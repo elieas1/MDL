@@ -68,9 +68,9 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <Card>
-        <CardBody className="card">
+    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <Card className="card">
+        <CardBody>
           <div className="title">$MDL - PRESALE</div>
           <div className="progress">
             <Progress
