@@ -21,6 +21,7 @@ import { deadAddress } from "@/utils/constants";
 import { useSearchParams } from "next/navigation";
 import { isValidEthereumAddress } from "@/utils/functions";
 import useDeposit from "@/hooks/useDeposit";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const { address } = useAccount();
@@ -99,8 +100,18 @@ export default function Home() {
           </div>
           <EmptySpace spaceTop={10} />
           <div className="info">
+            <div>My Allocation</div>
+            <div>{amount} MDL</div>
+          </div>
+          <EmptySpace spaceTop={10} />
+          <div className="info">
             <div>Max Wallet</div>
             <div>{maxPerUser} USDC</div>
+          </div>
+          <EmptySpace spaceTop={10} />
+          <div className="info">
+            <div>Total Allocation</div>
+            <div>{maxTotal} MDL</div>
           </div>
           {enabled && (
             <>
@@ -108,7 +119,22 @@ export default function Home() {
               <EmptySpace spaceTop={10} />
               <div className="info">
                 <div>Referral Link</div>
-                <div>{address}</div>
+                <div className="flex">
+                  {`https://mdl.numerical.fi/?ref=${address}`.slice(0, 13) +
+                    "..."}
+                  <div
+                    onClick={() => {
+                      navigator.clipboard
+                        .writeText(`https://mdl.numerical.fi/?ref=${address}`)
+                        .then(() => {
+                          toast.success("Copied");
+                        });
+                    }}
+                    className="copy"
+                  >
+                    Copy
+                  </div>
+                </div>
               </div>
               <EmptySpace spaceTop={10} />
               <div className="info">
@@ -135,6 +161,12 @@ export default function Home() {
               label="Amount"
               max={maxPerUser}
             />
+            {valueAmount > 0 && (
+              <div className="info">
+                <div>You get</div>
+                <div>{valueAmount} MDL</div>
+              </div>
+            )}
             {(hasReferral || (!!ref && isValidEthereumAddress(ref))) && (
               <Input
                 type="text"

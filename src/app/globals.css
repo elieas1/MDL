@@ -60,6 +60,11 @@ main {
   font-weight: bold;
 }
 
+.copy {
+  color: #4dc592;
+  cursor: pointer;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
