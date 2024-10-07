@@ -15,8 +15,8 @@ import { Providers } from "@/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "App | Numerical",
-  description: "Numerical app",
+  title: "MDL | Numerical",
+  description: "MDL Presale",
 };
 
 export default function RootLayout({
