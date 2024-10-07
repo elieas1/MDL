@@ -75,7 +75,7 @@ export default function Home() {
           <div className="title">$MDL - PRESALE</div>
           <div className="progress">
             <Progress
-              label={`${totalDeposited} / ${maxTotal} USDC`}
+              label={`${totalDeposited.toLocaleString()} / ${maxTotal.toLocaleString()} USDC`}
               size="sm"
               value={totalDeposited}
               maxValue={maxTotal}
@@ -96,22 +96,22 @@ export default function Home() {
           <EmptySpace spaceTop={10} />
           <div className="info">
             <div>My Contribution</div>
-            <div>{amount} USDC</div>
+            <div>{amount.toLocaleString()} USDC</div>
           </div>
           <EmptySpace spaceTop={10} />
           <div className="info">
             <div>My Allocation</div>
-            <div>{amount} MDL</div>
+            <div>{amount.toLocaleString()} MDL</div>
           </div>
           <EmptySpace spaceTop={10} />
           <div className="info">
             <div>Max Wallet</div>
-            <div>{maxPerUser} USDC</div>
+            <div>{maxPerUser.toLocaleString()} USDC</div>
           </div>
           <EmptySpace spaceTop={10} />
           <div className="info">
             <div>Total Allocation</div>
-            <div>{maxTotal} MDL</div>
+            <div>{maxTotal.toLocaleString()} MDL</div>
           </div>
           {enabled && (
             <>
@@ -164,7 +164,7 @@ export default function Home() {
             {valueAmount > 0 && (
               <div className="info">
                 <div>You get</div>
-                <div>{valueAmount} MDL</div>
+                <div>{valueAmount.toLocaleString()} MDL</div>
               </div>
             )}
             {(hasReferral || (!!ref && isValidEthereumAddress(ref))) && (
