@@ -44,11 +44,11 @@ const useGetUserData = ({ address }: Props) => {
   const { enabled, referrals, rewards } = referralData ?? {};
 
   return {
-    amount: formatUsdc(Number(amount)),
+    amount: formatUsdc(Number(amount)) || 0,
     referredBy,
     isLoadingUserData,
     enabled,
-    rewards: formatUsdc(Number(rewards)),
+    rewards: formatUsdc(Number(rewards)) || 0,
     referrals,
   };
 };
