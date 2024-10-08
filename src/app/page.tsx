@@ -16,12 +16,13 @@ import {
   Spinner,
   useDisclosure,
 } from "@nextui-org/react";
-import { useAccount } from "wagmi";
+import { useAccount, useSwitchChain } from "wagmi";
 import { deadAddress } from "@/utils/constants";
 import { useSearchParams } from "next/navigation";
 import { isValidEthereumAddress } from "@/utils/functions";
 import useDeposit from "@/hooks/useDeposit";
 import { toast } from "react-toastify";
+import { useAppKitState } from "@reown/appkit/react";
 
 export default function Home() {
   const { address } = useAccount();
@@ -74,10 +75,23 @@ export default function Home() {
     }
   }, [isSuccess, refetchContractData, refetchUserData]);
 
+  const { activeChain } = useAppKitState();
+  console.log(activeChain);
+
+  const { switchChain } = useSwitchChain();
+
   const hasReferral = referredBy !== deadAddress;
 
   const handleValueChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValueAmount(parseInt(event.target.value));
+  };
+
+  const handleDeposit = () => {
+    if (!activeChain?.includes("8453")) {
+      switchChain({ chainId: 8453 }, { onSuccess: () => deposit() });
+    } else {
+      deposit();
+    }
   };
 
   if (isLoadingContractData || isLoadingUserData) {
@@ -193,7 +207,7 @@ export default function Home() {
             )}
             <Button
               color="primary"
-              onPress={deposit}
+              onPress={handleDeposit}
               className="button"
               isLoading={
                 isLoadingDeposit ||

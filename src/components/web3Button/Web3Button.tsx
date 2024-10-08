@@ -8,6 +8,7 @@ import { useAppKit } from "@reown/appkit/react";
 const Web3Button = () => {
   const { open } = useAppKit();
   const { address } = useAccount();
+
   return (
     <Button className={classes.buttonStyle} onClick={() => open()}>
       {address
