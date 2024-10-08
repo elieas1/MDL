@@ -21,6 +21,9 @@ createAppKit({
   networks: [base],
   allowUnsupportedChain: false,
   defaultNetwork: base,
+  enableWalletConnect: true,
+  showWallets: true,
+  features: { socials: [], email: false, emailShowWallets: false },
 });
 
 function ContextProvider({
