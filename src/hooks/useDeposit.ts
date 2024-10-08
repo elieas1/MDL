@@ -99,6 +99,7 @@ const useDeposit = ({ address, amount, ref = "" }: Props) => {
     isLoadingApprove,
     isLoadingApproveHash,
     allowance,
+    isSuccess,
   };
 };
 

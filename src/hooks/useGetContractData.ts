@@ -6,6 +6,7 @@ const useGetContractData = () => {
   const {
     data,
     isLoading: isLoadingContractData,
+    refetch: refetchContractData,
   }: {
     data:
       | [
@@ -17,6 +18,7 @@ const useGetContractData = () => {
         ]
       | undefined;
     isLoading: boolean;
+    refetch: () => void;
   } = useReadContracts({
     contracts: [
       {
@@ -60,6 +62,7 @@ const useGetContractData = () => {
     totalDeposited: formatUsdc(Number(totalDeposited)),
     isLoadingContractData,
     successfullyDeposited,
+    refetchContractData,
   };
 };
 

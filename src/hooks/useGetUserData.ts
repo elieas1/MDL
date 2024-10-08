@@ -10,6 +10,7 @@ const useGetUserData = ({ address }: Props) => {
   const {
     data,
     isLoading: isLoadingUserData,
+    refetch: refetchUserData,
   }: // isError,
   {
     isError: boolean;
@@ -20,6 +21,7 @@ const useGetUserData = ({ address }: Props) => {
           { result: { enabled: boolean; rewards: bigint; referrals: string[] } }
         ]
       | undefined;
+    refetch: () => void;
   } = useReadContracts({
     contracts: [
       {
@@ -50,6 +52,7 @@ const useGetUserData = ({ address }: Props) => {
     enabled,
     rewards: formatUsdc(Number(rewards)) || 0,
     referrals,
+    refetchUserData,
   };
 };
 

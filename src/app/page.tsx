@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import EmptySpace from "@/components/emptySpace/EmptySpace";
 import useGetContractData from "@/hooks/useGetContractData";
 import useGetUserData from "@/hooks/useGetUserData";
@@ -40,6 +40,7 @@ export default function Home() {
     isLoadingApprove,
     isLoadingApproveHash,
     allowance,
+    isSuccess,
   } = useDeposit({
     address,
     amount: valueAmount,
@@ -53,10 +54,25 @@ export default function Home() {
     minPerUser,
     totalDeposited,
     successfullyDeposited,
+    refetchContractData,
   } = useGetContractData();
 
-  const { amount, isLoadingUserData, referredBy, enabled, rewards, referrals } =
-    useGetUserData({ address });
+  const {
+    amount,
+    isLoadingUserData,
+    referredBy,
+    enabled,
+    rewards,
+    referrals,
+    refetchUserData,
+  } = useGetUserData({ address });
+
+  useEffect(() => {
+    if (isSuccess) {
+      refetchContractData();
+      refetchUserData();
+    }
+  }, [isSuccess, refetchContractData, refetchUserData]);
 
   const hasReferral = referredBy !== deadAddress;
 
