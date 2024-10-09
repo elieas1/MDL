@@ -1,4 +1,4 @@
-export const mdlAddress = "0x6C82F7933C588392865EcA4354272a7C1E343b56";
+export const mdlAddress = "0x3D1c9FFb885b630A0d26342a0787eDdc77e5296f";
 
 export const mdlAbi = [
   {
